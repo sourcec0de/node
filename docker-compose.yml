@@ -1,0 +1,19 @@
+version: '3'
+
+services:
+  clair-server:
+    image: arminc/clair-local-scan:${CLAIR_SCAN_VERSION}
+
+    links:
+      - clair-db:postgres
+
+    depends_on:
+      - clair-db
+
+    ports:
+      - ${CLAIR_SCAN_PORT}:${CLAIR_SCAN_PORT}
+
+  clair-db:
+    image: arminc/clair-db:${CLAIR_DB_VERSION}
+    ports:
+      - 5432
