@@ -23,6 +23,9 @@ RUN apt-get update && apt-get upgrade -y && apt-get install -y \
     python \
     build-essential
 
+# add githubs public key signature to known hosts.
+RUN mkdir -p ~/.ssh && ssh-keyscan -t rsa github.com > ~/.ssh/known_hosts
+
 # Install node.js sourced from
 # https://github.com/nodejs/docker-node/blob/ab12e9bab43bde5efd2e9fa278d941e4062c6f4a/8/wheezy/Dockerfile
 # ignore the docker instruction that sets a default user and group for node

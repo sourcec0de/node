@@ -11,14 +11,12 @@ IMAGE_TAG=$(AUTHOR)/node:$(NODE_VERSION)
 # the export IMAGE_TAG since we're using a colon in the string
 # Make doesn't like it.
 export IMAGE_TAG
-export GCR_IMAGE_TAG
 
 .PHONY: build
 
 build:
 	docker build . -t latest \
-								 -t $(IMAGE_TAG) \
-								 -t $(GCR_IMAGE_TAG)
+								 -t $(IMAGE_TAG)
 
 push: build
 	docker push $(IMAGE_TAG)
